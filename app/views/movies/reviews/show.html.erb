@@ -1,0 +1,32 @@
+<div class="panel panel-default panel-body">
+	<div class="container">
+		<p>
+			<strong>Movie:</strong>
+			<%= @review.movie_id %>
+		</p>
+		<p>
+			<div class="star-rating" data-score= <%= @review.rating %> ></div>
+		</p>
+		<p>
+			<strong>Comment:</strong>
+			<%= @review.comment %>
+		</p>
+		<p>
+			<strong>User:</strong>
+			<%= @review.user.email %>
+		</p>
+		<% if @review.movie_id %>
+			<%= link_to 'Movie', movie_path(@review.movie_id) %> | 
+		<% end %>
+		<%= link_to 'Reviews', reviews_path %>
+	</div>
+</div>
+<script>
+	$('.star-rating').raty({
+		path: '',
+		readOnly: true,
+		score: function(){
+			return $(this).attr('data-score');
+		}
+	});
+</script>

@@ -1,0 +1,18 @@
+<div class="row">
+	<% @movies.each do |movie| %>
+		<div class="col-md-3 col-sm-6 col-xs-6">
+			<div class="thumbnail tile">
+				<% if movie.poster_path %>
+					<%= link_to (image_tag("https://image.tmdb.org/t/p/w185/#{movie.poster_path}")), movie_path(movie.id) %>
+				<% else %>
+					<%= link_to movie_path(movie.id) do %>
+						<div class="missing-img">
+							<p>Error loading image.</p>
+						</div>
+					<% end %>
+				<% end %>
+				<p class="title-link"><%= link_to (movie.title), movie_path(movie.id) %></p>
+			</div>
+		</div>
+	<% end %>
+</div>

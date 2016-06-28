@@ -1,0 +1,168 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,700,700italic);
+
+body {
+	font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif;
+}
+.navbar {
+	background: #fff;
+	border-radius: 0;
+	box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+	.navbar-brand {
+		padding: 5px 15px;
+		img {
+			height: 40px;
+			display: inline-block;
+		}
+	}
+}
+.navbar-default {
+	border: 0;
+}
+.jumbotron {
+	background: none;
+	text-align: center;
+	h1 {
+		font-weight: 300;
+	}
+	p {
+		font-weight: 400;
+	}
+}
+//= depend_on_asset "watchdoge-logo-alt.png"
+.logo-bg {
+	background-image: url('<%= asset_path("watchdoge-logo-alt.png") %> ');
+	background-repeat: no-repeat;
+	background-size: auto 106%;
+	background-position: center 22px;
+}
+//= depend_on_asset "watchdoge-bg.png"
+.fur-bg {
+	background-image: url('<%= asset_path("watchdoge-bg.png") %> ');	
+}
+.orange-bg {
+	background-color: #f7931e;
+}
+.white-bg {
+	background-color: #fff;
+}
+.litegray-bg {
+	background-color: #ddd;
+}
+.darkgray-bg {
+	background-color: #222;
+}
+.white-txt {
+	color: #fff;
+}
+.tile {
+	background: none;
+	height: 0;
+	padding: 0;
+	padding-bottom: 150%;
+	border: 0px;
+	position: relative;
+	overflow: hidden;
+	img, .missing-img {
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	.missing-img {
+		height: 100%;
+		p {
+			color: #fff;
+			width: 100%;
+			text-align: center;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+	.title-link {
+		background: rgba(0,0,0,0.5);
+		padding: 10px;
+		position: relative;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+		display: none;
+		a {
+			color: #fff;
+		}
+	}
+	&:hover > .title-link {
+		display: block;
+	}
+}
+.review-title {
+	margin: 0 0 20px 0;
+}
+.reviews {
+	padding: 15px 0;
+	border-bottom: 1px solid #444;
+	.star-rating {
+		padding-bottom: 8px;
+	}
+}
+.alert {
+	transition: all 0.5s;
+}
+.pop-over {
+	background: rgba(0,0,0,0.75);
+	color: #fff;
+	border-radius: 5px;
+	position: fixed;
+	top: 60px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 999;
+}
+.fixed {
+	position: fixed;
+}
+.full {
+	width: 100%;
+}
+.front {
+	z-index: 999;
+}
+.pad-20-0 {
+	padding: 20px 0;
+}
+.pad-top-50 {
+	padding-top: 50px;
+}
+.pad-top-70 {
+	padding-top: 70px;
+}
+.missing-img {
+	background: #ccc;
+	padding: 20px;
+	height: 278px;
+	width: 100%;
+}
+footer {}
+footer a:hover {
+	color: #fff;
+	text-decoration: underline;
+}

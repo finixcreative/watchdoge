@@ -1,0 +1,85 @@
+<div class="panel panel-default">
+	<div class="container">
+		<div class="panel-body">
+			<p><%= link_to 'Back', :back %></p>
+			<h1 class="movie-title">
+				<%= @movie['title'] %>
+			</h1>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="thumbnail col-md-12 col-sm-6">
+						<% if @movie['poster_path'] %>
+							<%= image_tag @movie_poster %>
+						<% else %>
+							<div class="missing-img">
+								<p>Error loading image.</p>
+							</div>
+						<% end %>
+					</div>
+					<div class="table-responsive col-md-12 col-sm-6">
+						<table class="table">
+							<tbody>
+								<tr>
+									<td><strong>Title:</strong></td>
+									<td><%= @movie['title'] %></td>
+								</tr>
+								<tr>
+									<td><strong>Rating:</strong></td>
+									<td>
+										<div class="star-rating" data-score= <%= @avg_review %> ></div>
+										<em><%= "#{@reviews.length} reviews" %></em>
+									</td>
+								</tr>
+								<tr>
+									<td><strong>Release date:</strong></td>
+									<td><%= @movie['release_date'] %></td>
+								</tr>
+								<tr>
+									<td><strong>Genre:</strong></td>
+									<td>
+										<p>
+											<% @movie['genres'].each do |genre| %>
+												<%= genre['name'] %><br>
+											<% end %>
+										</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="col-md-8 col-sm-12">
+					<h3 class="review-title">Reviews</h3>
+					<p>
+						<%= link_to 'New Review', new_movie_review_path(@movie_id, @review), class: "btn btn-primary" %>
+					</p>
+					<% if @reviews.blank? %>
+						<p>No reviews yet.</p>
+					<% else %>
+					    <% @reviews.each do |review| %>
+					    	<div class="reviews">
+					    		<div class="star-rating" data-score=<%= review.rating %> ></div>
+					    		<p><%= review.comment %></p>
+					    		<% if user_signed_in? %>
+						    		<p>
+						    			<%= link_to 'Edit', edit_review_path(review.id) %> | 
+						    			<%= link_to 'Delete', review_path(review.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+						    		</p>
+						    	<% end %>
+					    	</div>
+					    <% end %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$('.star-rating').raty({
+		path: '',
+		readOnly: true,
+		score: function(){
+			return $(this).attr('data-score');
+		}
+	});
+</script>

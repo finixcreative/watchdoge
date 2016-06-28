@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>WatchDoge</title>
+		<%= csrf_meta_tags %>
+		<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	</head>
+	<body class="fur-bg litegray-bg">
+		<%= render 'layouts/header' %>
+		<% flash.each do |name, message| %>
+			<%= content_tag(:div, message, id: 'flash', class: 'alert pop-over') %>
+		<% end %>
+		<div class="pad-top-50">
+			<%= yield %>		
+		</div>
+		<%= render 'layouts/footer' %>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				setTimeout(function(){
+					$('#flash').fadeOut(1000, "linear", function(){
+						$(this).hide();
+					});
+				}, 3000);
+			})
+		</script>
+	</body>
+</html>

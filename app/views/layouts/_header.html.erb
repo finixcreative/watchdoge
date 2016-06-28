@@ -1,0 +1,65 @@
+<nav class="navbar navbar-default fixed full front">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">
+				<%= image_tag "watchdoge-logo.png", alt: "WatchDoge Logo" %> WatchDoge <span class="sr-only">(current)</span>
+			</a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						<span class="glyphicon glyphicon-filter" aria-hidden="true"></span> 
+						Filters 
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><%= link_to "Most Popular", movies_path({filter: "popular", order: params[:order]}) %></li>
+						<li><%= link_to "Top Rated", movies_path({filter: "toprated", order: params[:order]}) %></li>
+						<li><%= link_to "Playing Now", movies_path({filter: "nowplaying", order: params[:order]}) %></li>
+						<li><%= link_to "Coming Soon", movies_path({filter: "upcoming", order: params[:order]}) %></li>
+						<li role="separator" class="divider"></li>
+						<li><%= link_to "Title", search: params[:search], filter: params[:filter], order: "title" %></li>
+						<li><%= link_to "Release Date", search: params[:search], filter: params[:filter], order: "release" %></li>
+						<li><%= link_to "Genre", search: params[:search], filter: params[:filter], order: "genre" %></li>
+					</ul>
+				</li>
+			</ul>
+			<%= form_tag search_movies_path, method: :get, class: "navbar-form navbar-left", role: "search" do %>
+				<%= text_field_tag :search, params[:search], class: "form-control" %>
+				<%= submit_tag "Search", name: nil, class: "btn btn-default" %>
+			<% end %>
+			<ul class="nav navbar-nav navbar-right">
+				<% if !user_signed_in? %>
+					<li>
+						<a href="/users/sign_in">
+							<span class="glyphicon glyphicon-user" aria-hidden="true"></span> 
+							Log In
+						</a>
+					</li>
+				<% else %>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							<span class="glyphicon glyphicon-user" aria-hidden="true"></span> 
+							<%= current_user.email %> 
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><%= link_to "User info", edit_user_registration_path %></li>
+							<li role="separator" class="divider"></li>
+							<li><%= link_to "Log out", destroy_user_session_path %></li>
+						</ul>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</nav>
